@@ -7,8 +7,7 @@ use App\Models\Post;
 
 class PostsController extends Controller
 {
-    public function show($id){
-        $post = Post::find($id);
+    public function show(Post $post){
         return view('posts.show', compact('post'));
     }
 
@@ -17,35 +16,28 @@ class PostsController extends Controller
     }
 
     public function store(){
-        $this->validate(request(), [
+        Post::create($this->validate(request(), [
             'title' => 'required',
             'excerpt' => 'required',
             'body' => 'required',
-            ]);
-        $post = new Post;
-        $post->title = request('title');
-        $post->excerpt = request('excerpt');
-        $post->body = request('body');
-        $post->save();
+            ]));
         return redirect('/home');
     }
 
-    public function edit($id){
-        $post = Post::find($id);
+    public function edit(Post $post){
         return view('posts.edit', compact('post'));
     }
-    public function update($id){
-        $this->validate(request(), [
+    public function update(Post $post){
+        $post->update($this->validateAttributes());
+        return redirect('/posts/'.$post->id);
+    }
+
+    private function validateAttributes(){
+        return request()->validate( [
             'title' => 'required',
             'excerpt' => 'required',
             'body' => 'required',
             ]);
-        $post = Post::find($id);
-        $post->title = request('title');
-        $post->excerpt = request('excerpt');
-        $post->body = request('body');
-        $post->save();
-        return redirect('/posts/'.$id);
     }
 
 }
