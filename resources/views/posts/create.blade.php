@@ -42,14 +42,30 @@
                         </div>
 
                         <div class="form-field ">
-                        <textarea
-                        name="body"
-                        id="body"
-                        class="full-width @error('body') is-danger @enderror"
-                        placeholder="Post body" >{{old('body')}}</textarea>
+                            <textarea
+                            name="body"
+                            id="body"
+                            class="full-width @error('body') is-danger @enderror"
+                            placeholder="Post body" >{{old('body')}}</textarea>
                             @error('body')
                                 <div class="alert-box alert-box--error hideit">
                                     <p>{{$errors->first('body')}}</p>
+                                    <i class="fa fa-times alert-box__close"></i>
+                                </div> <!-- end error -->
+                            @enderror
+                        </div>
+
+                        <div class="form-field ">
+                            <select
+                            name="tags[]"
+                            class="full-width @error('tags') is-danger @enderror" style="height: 150px;" multiple>
+                            @foreach ($tags as $tag)
+                                <option value="{{$tag->id}}">{{$tag->name}}</option>
+                            @endforeach
+                        </select>
+                            @error('tags')
+                                <div class="alert-box alert-box--error hideit">
+                                    <p>@message</p>
                                     <i class="fa fa-times alert-box__close"></i>
                                 </div> <!-- end error -->
                             @enderror

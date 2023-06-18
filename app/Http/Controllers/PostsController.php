@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Tag;
 
 class PostsController extends Controller
 {
@@ -12,15 +13,17 @@ class PostsController extends Controller
     }
 
     public function create(){
-        return view('posts.create');
+        $tags = Tag::all();
+        return view('posts.create', compact('tags'));
     }
 
     public function store(){
-        Post::create($this->validate(request(), [
-            'title' => 'required',
-            'excerpt' => 'required',
-            'body' => 'required',
-            ]));
+
+        $post = new Post($this->validateAttributes());
+        $post->user_id = 1;
+        $post->save();
+        $post->tags()->attach(request('tags'));
+
         return redirect('/home');
     }
 
@@ -29,7 +32,7 @@ class PostsController extends Controller
     }
     public function update(Post $post){
         $post->update($this->validateAttributes());
-        return redirect('/posts/'.$post->id);
+        return redirect(redirect(route('posts.show', $post)));
     }
 
     private function validateAttributes(){
@@ -37,6 +40,7 @@ class PostsController extends Controller
             'title' => 'required',
             'excerpt' => 'required',
             'body' => 'required',
+            'tags' => 'exists:tags,id'
             ]);
     }
 

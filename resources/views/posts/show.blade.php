@@ -15,8 +15,11 @@
                     <li class="date">December 16, 2017</li>
                     <li class="cat">
                         In
-                        <a href="#0">Lifestyle</a>
-                        <a href="#0">Travel</a>
+                        @foreach ($post->tags as $tag )
+                            <a href="#0">{{$tag->name}}</a>
+                        @endforeach
+                        {{-- <a href="#0">Lifestyle</a>
+                        <a href="#0">Travel</a> --}}
                     </li>
                 </ul>
             </div> <!-- end s-content__header -->

@@ -241,8 +241,11 @@
                 <h3>Tags</h3>
 
                 <div class="tagcloud">
-                    <a href="#0">Salad</a>
-                    <a href="#0">Recipe</a>
+                    @foreach (App\Models\Tag::All() as $tag)
+                     <a href="#0">{{$tag->name}}</a>
+                    @endforeach
+
+                    {{-- <a href="#0">Recipe</a>
                     <a href="#0">Places</a>
                     <a href="#0">Tips</a>
                     <a href="#0">Friends</a>
@@ -251,7 +254,7 @@
                     <a href="#0">Reading</a>
                     <a href="#0">Running</a>
                     <a href="#0">Self-Help</a>
-                    <a href="#0">Vacation</a>
+                    <a href="#0">Vacation</a> --}}
                 </div> <!-- end tagcloud -->
             </div> <!-- end tags -->
         </div> <!-- end tags-wrap -->
