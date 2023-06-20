@@ -4,7 +4,7 @@ use App\Models\Post;
 class HomeController extends Controller
 {
     public function index(){
-        $posts = Post::latest()->get();
+        $posts = Post::with('tags')->latest()->get();
         return view('home', compact('posts'));
 
     }

@@ -119,10 +119,10 @@
         </header> <!-- header -->
 
 
-       @yield('pageheader-content')
+       {{ $pageheader_content}}
     </section> <!-- end s-pageheader -->
 
-    @yield('content')
+    {{$slot}}
 
     <!-- s-extra
     ================================================== -->
