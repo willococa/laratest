@@ -1,5 +1,4 @@
-@extends('layout')
-@section('content')
+<x-layout :posts="$posts">
   <!-- s-content
     ================================================== -->
     <section class="s-content s-content--narrow">
@@ -82,4 +81,4 @@
         </div> <!-- end row -->
 
     </section> <!-- s-content -->
-@endsection
+</x-layout>

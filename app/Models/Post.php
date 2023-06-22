@@ -11,7 +11,7 @@ class Post extends Model
     protected $fillable = ['title', 'body', 'excerpt'];
 
     public function author(){
-        $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
     public function tags(){
         return $this->belongsToMany(Tag::class)->withTimestamps();

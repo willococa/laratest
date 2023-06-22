@@ -1,6 +1,4 @@
-@extends('layout')
-@section('content')
-
+<x-layout>
     <!-- s-content
     ================================================== -->
     <section class="s-content s-content--narrow s-content--no-padding-bottom">
@@ -11,9 +9,10 @@
                 <h1 class="s-content__header-title">
                     {{$post->title}}
                 </h1>
-                <ul class="s-content__header-meta">
-                    <li class="date">December 16, 2017</li>
-                    <li class="cat">
+                <ul class="s-content__header-meta">           
+                   <li class="date">{{$post->created_at->toFormattedDateString()}}</li>
+
+                   <li class="cat">
                         In
                         @foreach ($post->tags as $tag )
                             <a href="#0">{{$tag->name}}</a>
@@ -102,7 +101,7 @@
 
                     <div class="s-content__author-about">
                         <h4 class="s-content__author-name">
-                            <a href="#0">Jonathan Doe</a>
+                            <a href="#0">{{$post->author->name}}</a>
                         </h4>
 
                         <p>Alias aperiam at debitis deserunt dignissimos dolorem doloribus, fuga fugiat impedit laudantium magni maxime nihil nisi quidem quisquam sed ullam voluptas voluptatum. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -331,4 +330,4 @@
         </div> <!-- end comments-wrap -->
 
     </section> <!-- s-content -->
-@endsection
+</x-layout>
