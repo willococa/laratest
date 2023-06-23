@@ -35,4 +35,4 @@ Route::get('/contact', function () {
 
 Route::get('/admin/home', function () {
     return view('admin.home');
-}
+} )->name('admin.home');
