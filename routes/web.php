@@ -33,6 +33,6 @@ Route::get('/contact', function () {
  Route::put('/posts/{post}', [PostsController::class, 'update']);
  Route::get('category/{category:slug}', [PostsController::class, 'category'])->name('category.posts');
 
-Route::get('/admin/home', function () {
+Route::get('/admin/{any?}', function () {
     return view('admin.home');
 } )->name('admin.home');
