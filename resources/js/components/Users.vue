@@ -1,5 +1,19 @@
+
+<script setup>
+import { computed, ref} from "vue";
+import {useUserStore} from "./stores/UserStore";
+import UserModal from "./modals/UserModal.vue"
+let store = useUserStore()
+store.fetchUsers()
+let users = computed(()=>store.getUsers)
+let showModal = ref(false)
+
+
+
+</script>
+
 <template>
-    <div>Users ({{ users.length }})</div>
+    <div>Users ({{ store.getTotal }})</div>
     <table>
         <thead>
             <tr>
@@ -12,7 +26,7 @@
             <tr v-for="user in users">
                 <td>{{user.name}}</td>
                 <td>{{user.email}}</td>
-                <td><button>Edit</button></td>
+                <td><button @click="showModal = true">Edit</button></td>
                 <td><button>Delete</button></td>
             </tr>
         </tbody>
@@ -20,17 +34,9 @@
             <td><button>New User</button></td>
         </tfoot>
     </table>
-    <ul>
-        <li v-for="user in users" v-text="user.name"></li>
-    </ul>
+    <Teleport to="body">
+        <UserModal :show="showModal" @close="showModal=false">
+            <p>Add A new User</p>
+        </UserModal>
+    </Teleport>
 </template>
-<script setup>
-import axios from 'axios';
-import { ref, onMounted} from 'vue';
-let  users= ref(0)
-onMounted(()=>{
-     axios.get('http://localhost:8000/api/users').then(({data})=>{
-        users.value = data.users
-     })
-})
-</script>
