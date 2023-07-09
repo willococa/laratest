@@ -13,6 +13,7 @@ export const useUserStore = defineStore("users", {
         async fetchUsers(){
             await axios.get("http://127.0.0.1:8000/api/users").then(res => {
                 let data = res.data
+                console.log(data.data);
                 this.$patch({
                     users: data.users
                 })

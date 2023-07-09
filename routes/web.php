@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostsController;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +37,6 @@ Route::get('/contact', function () {
 Route::get('/admin/{any?}', function () {
     return view('admin.home');
 } )->name('admin.home');
+
+Route::get('/register', [RegisterController::class, 'create']);
+Route::post('/register', [RegisterController::class, 'store']);
