@@ -297,19 +297,8 @@
     <script src="{{ asset('js/plugins.js')}}"></script>
     <script src="{{ asset('js/main.js')}}"></script>
     <!-- Flash message -->
-
-    @hasSection('success')
-        <div class="flash-message-container alert-box alert-box--success hideit">
-            <p>{{section('success')}}</p>
-            <i class="fa fa-times alert-box__close"></i>
-        </div>
-    @endif
-    @if(session()->has('success'))
-        <div class="flash-message-container alert-box alert-box--success hideit">
-            <p>{{section('success')}}</p>
-            <i class="fa fa-times alert-box__close"></i>
-        </div>
-    @endif
+    <x-flash-message></x-flash-message>
+    
 </body>
 
 </html>
