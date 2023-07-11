@@ -7,12 +7,20 @@ use Illuminate\Http\Request;
 
 class PostsController extends Controller
 {
-    
+
     public function index(){
-         return response()->json([
-            'posts' => [
-                [ 'title' => 'Post 1'],
-                [ 'title' => 'Post 2'],
-                [ 'title' => 'Post 3'] ]], 200);
-    } 
+         return Post::all();
+    }
+
+    public function store(){
+        $attributes = request()->validate([
+            'title' => 'required',
+            'body' => 'required',
+            'excerpt' => 'required',
+            'thumbnail' => 'required',
+            'category_id' => 'required'
+            ]);
+        $attributes['user_id'] = auth()->id();
+        $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
+    }
 }

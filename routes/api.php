@@ -4,7 +4,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Models\Post;
+use App\Models\Category;
 use App\Http\Controllers\API\UsersController;
+use App\Http\Controllers\API\PostsController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -22,8 +24,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('users',[UsersController::class,'index']);
 
-Route::get('posts', function(){
-    return [ 'posts' => Post::all()];
+Route::get('posts', [PostsController::class,'index']);
+Route::get('categories', function(){
+    return [ 'categories' => Category::all()];
     });
 
 

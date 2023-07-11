@@ -2,7 +2,7 @@
 <script setup>
 import { computed, ref} from "vue";
 import {useUserStore} from "./stores/UserStore";
-import UserModal from "./modals/UserModal.vue"
+import CreateUserForm from  "./forms/CreateUserForm.vue"
 let store = useUserStore()
 store.fetchUsers()
 let users = computed(()=>store.getUsers)
@@ -35,8 +35,6 @@ let showModal = ref(false)
         </tfoot>
     </table>
     <Teleport to="body">
-        <UserModal :show="showModal" @close="showModal=false">
-            <p>Add A new User</p>
-        </UserModal>
+        <CreateUserForm :show="showModal" @close="showModal=false"/>
     </Teleport>
 </template>

@@ -7,15 +7,10 @@ defineProps({
     <div v-if="show" class="modal-mask">
         <div class="modal-container">
             <header class="modal-header">
-                <h1><slot/></h1>
+                <h1><slot name="header"/></h1>
             </header>
             <div class="modal-content">
-                <form name="user" action="/api/users" method="post">
-                    <input type="text" name="name" id="name" placeholder="Name..">
-                    <input type="email" name="email" id="email" placeholder="Email..">
-                    <input type="password" name="password" id="password" placeholder="Password..">
-                    <button type="submit">Create new User</button>
-                </form>
+                <slot name="content"/>
             </div>
             <footer class="modal-footer">
                 <button @click="$emit('close')">Close</button>

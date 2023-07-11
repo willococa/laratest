@@ -1,3 +1,13 @@
+
+<script setup>
+import { computed, ref} from "vue";
+import {usePostStore} from "./stores/PostStore";
+import CreatePostForm from "./forms/CreatePostForm.vue"
+let store = usePostStore()
+store.fetchPosts()
+let posts= computed(()=>store.getPosts)
+let showModal = ref(false)
+</script>
 <template>
     <div>Posts ({{ posts.length }})</div>
     <table>
@@ -21,18 +31,10 @@
             </tr>
         </tbody>
         <tfoot>
-            <td><button>New post</button></td>
+            <td><button @click="showModal = true">New post</button></td>
         </tfoot>
     </table>
+    <Teleport to="body">
+        <CreatePostForm :show="showModal" @close="showModal=false"/>
+    </Teleport>
 </template>
-<script setup>
-import axios from 'axios';
-import { ref, onMounted} from 'vue';
-let  posts= ref(0)
-onMounted(()=>{
-     axios.get('http://localhost:8000/api/posts').then(({data})=>{
-        posts.value = data.posts
-        console.log(posts)
-     })
-})
-</script>

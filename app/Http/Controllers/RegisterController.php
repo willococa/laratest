@@ -19,7 +19,7 @@ class RegisterController extends Controller
 
         $validated['password'] = bcrypt($validated['password']);
         $user =User::create($validated);
-        // auth()->login($user);
+        auth()->login($user);
         return redirect('/home')->with('success','Thanks for registering!');
     }
 }

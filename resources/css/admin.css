@@ -25,3 +25,13 @@ body{
     flex-direction: column;
     row-gap: 20px;
 }
+
+/* Flash message */
+.flash-message-container {
+	position: fixed;
+	top: 0;
+	width: 100vw;
+}
+.post-form textarea{
+    height: 200px;
+}

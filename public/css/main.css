@@ -4221,9 +4221,3 @@ footer h4::after {
 
 /*# sourceMappingURL=main.css.map */
 
-/* Flash message */
-.flash-message-container {
-	position: fixed;
-	top: 0;
-	width: 100vw;
-}

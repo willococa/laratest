@@ -32,6 +32,7 @@
 </head>
 
 <body id="top">
+    <x-session-links/>
 
     <!-- pageheader
     ================================================== -->
@@ -298,7 +299,7 @@
     <script src="{{ asset('js/main.js')}}"></script>
     <!-- Flash message -->
     <x-flash-message></x-flash-message>
-    
+
 </body>
 
 </html>
