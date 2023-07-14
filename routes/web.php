@@ -34,7 +34,7 @@ Route::get('/contact', function () {
 
 Route::get('/admin/{any?}', function () {
     return view('admin.home');
-} )->middleware('admin')->name('admin.home');
+} )->name('admin.home');
 
 Route::get('/register', [RegisterController::class, 'create'])->middleware('guest')->name('register');
 Route::post('/register', [RegisterController::class, 'store'])->middleware('guest');
@@ -42,3 +42,7 @@ Route::post('/register', [RegisterController::class, 'store'])->middleware('gues
 Route::post('/logout', [SessionsController::class, 'destroy'])->middleware('auth');
 Route::get('/login', [SessionsController::class, 'create'])->middleware('guest');
 Route::post('/login', [SessionsController::class, 'store'])->middleware('guest');
+
+Route::get('csrf-token', function () {
+    return response()->json(['csrf_token' => csrf_token()]);
+});

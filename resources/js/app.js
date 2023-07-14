@@ -22,7 +22,10 @@ app.component('app-component', App);
 app.use(router);
 
 app.use(pinia)
-app.mount("#app");
+
+router.isReady().then(() => {
+    app.mount("#app");
+});
 
 
 

@@ -24,7 +24,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('users',[UsersController::class,'index']);
 
-Route::get('posts', [PostsController::class,'index']);
+Route::get('posts', [PostsController::class,'index'])->middleware('auth:api');
+Route::post('posts', [PostsController::class,'store'])->middleware('auth:api');
 Route::get('categories', function(){
     return [ 'categories' => Category::all()];
     });

@@ -18,7 +18,7 @@ export const useUserStore = defineStore("users", {
                     users: data.users
                 })
 
-            }). catch(err => {
+            }).catch(err => {
                 console.log(err);
                 return err;
              })

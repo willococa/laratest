@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
         $user = User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
+            'password' => 'password',
+            'api_token' => '$2y$10$VlSBeSpxCVGqasmGndkGnOkj075sX3gQSxsbbHmWlUVrdJxd9avnW'
         ]);
 
 

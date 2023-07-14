@@ -1,6 +1,5 @@
 <script setup>
 import Modal from '../Modal.vue';
-
 defineProps({
     show: Boolean
 })

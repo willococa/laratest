@@ -4,7 +4,15 @@ export const usePostStore = defineStore("posts", {
     //this is like data{}
     state: () =>{
         return {
-            posts: null
+            posts: null,
+            post: {
+                title: "",
+                excerpt: "",
+                body: "",
+                thumbnail: "",
+                category_id: null,
+
+            }
         }
 
     },
@@ -22,11 +30,23 @@ export const usePostStore = defineStore("posts", {
                 console.log(err);
                 return err;
              })
+        },
+        async createPost(post){
+            await axios.post("http://127.0.0.1:8000/api/posts", post).then(res => {
+                console.log(res);
+                this.fetchPosts();
+                return res;
+            }).catch(err => {
+                console.log(err);
+                return err;
+            })
         }
+
     },
     //this is like computed
     getters:{
         getPosts: (state) => state.posts,
+        getPost: (state) => state.post,
         getTotal: (state)=> state.posts.length
     }
 })

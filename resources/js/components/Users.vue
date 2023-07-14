@@ -4,8 +4,10 @@ import { computed, ref} from "vue";
 import {useUserStore} from "./stores/UserStore";
 import CreateUserForm from  "./forms/CreateUserForm.vue"
 let store = useUserStore()
-store.fetchUsers()
-let users = computed(()=>store.getUsers)
+let users = []
+await store.fetchUsers().then(
+     users = computed(()=>store.getUsers)
+)
 let showModal = ref(false)
 
 
